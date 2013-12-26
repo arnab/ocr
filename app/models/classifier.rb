@@ -1,4 +1,5 @@
 require "libsvm"
+require "matrix"
 
 class Classifier
   MODEL_FILE = "models/svm.model"
@@ -36,21 +37,22 @@ class Classifier
 
     expected_labels.map! {|str| DataAccessor.word_to_num str}
     Rails.logger.info "Running tests on #{examples.size} examples"
-    failures = []
+    failure_count = 0
     reporting_step_size = examples.size / 20
 
     examples.each_with_index do |example, i|
-      expected_label = expected_labels[i]
-      found_label = @model.predict(Libsvm::Node.features(*example))
-      failures << i unless found_label.to_i == expected_label.to_i
+      expected = expected_labels[i].to_i
+      found = @model.predict(Libsvm::Node.features(*example)).to_i
+
+      @results[:confusion_matrix][found, expected] << i
+      failure_count += 1 unless found == expected
 
       if (i+1) % reporting_step_size == 0
-        log_accuracy(failures.size, examples.size, i+1)
+        log_accuracy(failure_count, examples.size, i+1)
       end
     end
-    log_accuracy(failures.size, examples.size)
-    @results[:accuracy] = 100 - failures.size.to_f / examples.size * 100
-
+    log_accuracy(failure_count, examples.size)
+    @results[:accuracy] = 100 - failure_count.to_f / examples.size * 100
     @results_ready = true
   end
 
@@ -72,7 +74,8 @@ class Classifier
     @results_ready = false
     @results = {
       :accuracy => nil,
-      :confusion_matrix => nil
+      # 10 labels to classify. So 10x10 matrix
+      :confusion_matrix => Matrix.build(10, 10) { [] }
     }
   end
 

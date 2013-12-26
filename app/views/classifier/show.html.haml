@@ -42,3 +42,17 @@
     Accuracy:
     %strong= classifier.results[:accuracy].round(2)
     \%
+  %h4 Confusion Matrix
+  %table
+    %thead
+      %tr
+        %th
+        - 0.upto(9) do |n|
+          %th= n
+    %tbody
+      - 0.upto(classifier.results[:confusion_matrix].row_size - 1) do |n|
+        %tr
+          %th= n
+          - classifier.results[:confusion_matrix].row(n).each do |column|
+            %td
+              = column.empty? ? '' : column.size

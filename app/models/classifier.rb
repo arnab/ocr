@@ -35,12 +35,14 @@ class Classifier
     expected_labels.map! {|str| DataAccessor.word_to_num str}
     Rails.logger.info "Running tests on #{examples.size} examples"
     failures = []
+    reporting_step_size = examples.size / 20
+
     examples.each_with_index do |example, i|
       expected_label = expected_labels[i]
       found_label = @model.predict(Libsvm::Node.features(*example))
       failures << i unless found_label.to_i == expected_label.to_i
 
-      if (i+1) % 1000 == 0
+      if (i+1) % reporting_step_size == 0
         log_accuracy(failures.size, examples.size, i+1)
       end
     end

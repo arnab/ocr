@@ -1,6 +1,7 @@
 Ocr::Application.routes.draw do
   get "data/show"
   get "classifier/show"
+  post "classifier/test"
 
   root 'data#show'
 

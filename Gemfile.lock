@@ -27,7 +27,14 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    callsite (0.0.11)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -35,6 +42,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.0.2)
     foundation-rails (5.0.2.0)
@@ -59,6 +67,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.8)
+      callsite
+      rack-contrib
+      railties
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -67,6 +79,8 @@ GEM
       i18n
     polyglot (0.3.3)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.2)
@@ -122,11 +136,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   coffee-rails (~> 4.0.0)
   foundation-rails
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  meta_request
   numbers_and_words
   rails (= 4.0.2)
   rb-libsvm

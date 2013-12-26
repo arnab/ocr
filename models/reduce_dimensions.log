@@ -1,0 +1,180 @@
+=== Run information ===
+
+Evaluator:    weka.attributeSelection.CfsSubsetEval -P 1 -E 1
+Search:       weka.attributeSelection.BestFirst -D 1 -N 5
+Relation:     training_data
+Instances:    5000
+Attributes:   785
+              [list of attributes omitted]
+Evaluation mode:    evaluate on all training data
+
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Best first.
+	Start set: no attributes
+	Search direction: forward
+	Stale search after 5 node expansions
+	Total number of subsets evaluated: 110220
+	Merit of best subset found:    0.587
+
+Attribute Subset Evaluator (supervised, Class (nominal): 785 label):
+	CFS Subset Evaluator
+	Including locally predictive attributes
+
+Selected attributes: 101,102,128,129,150,151,153,154,155,156,157,158,180,182,183,184,185,189,191,211,212,214,221,232,238,240,242,243,249,262,263,264,265,267,268,270,271,272,273,284,291,292,296,298,299,300,301,318,319,320,323,324,327,328,330,346,347,348,349,350,351,352,354,355,373,374,375,376,377,378,379,380,381,382,383,401,402,403,404,405,406,407,408,409,410,411,414,428,430,431,432,433,434,435,436,437,438,439,442,456,457,458,460,461,462,463,465,466,483,486,487,488,489,490,491,492,493,494,496,498,514,515,516,517,518,524,539,540,541,542,543,544,545,551,567,568,569,570,572,573,578,594,596,597,598,626,627,655,656,657,658,659 : 152
+                     pixel-4-17
+                     pixel-4-18
+                     pixel-5-16
+                     pixel-5-17
+                     pixel-6-10
+                     pixel-6-11
+                     pixel-6-13
+                     pixel-6-14
+                     pixel-6-15
+                     pixel-6-16
+                     pixel-6-17
+                     pixel-6-18
+                     pixel-7-12
+                     pixel-7-14
+                     pixel-7-15
+                     pixel-7-16
+                     pixel-7-17
+                     pixel-7-21
+                     pixel-7-23
+                     pixel-8-15
+                     pixel-8-16
+                     pixel-8-18
+                     pixel-8-25
+                     pixel-9-8
+                     pixel-9-14
+                     pixel-9-16
+                     pixel-9-18
+                     pixel-9-19
+                     pixel-9-25
+                     pixel-10-10
+                     pixel-10-11
+                     pixel-10-12
+                     pixel-10-13
+                     pixel-10-15
+                     pixel-10-16
+                     pixel-10-18
+                     pixel-10-19
+                     pixel-10-20
+                     pixel-10-21
+                     pixel-11-4
+                     pixel-11-11
+                     pixel-11-12
+                     pixel-11-16
+                     pixel-11-18
+                     pixel-11-19
+                     pixel-11-20
+                     pixel-11-21
+                     pixel-12-10
+                     pixel-12-11
+                     pixel-12-12
+                     pixel-12-15
+                     pixel-12-16
+                     pixel-12-19
+                     pixel-12-20
+                     pixel-12-22
+                     pixel-13-10
+                     pixel-13-11
+                     pixel-13-12
+                     pixel-13-13
+                     pixel-13-14
+                     pixel-13-15
+                     pixel-13-16
+                     pixel-13-18
+                     pixel-13-19
+                     pixel-14-9
+                     pixel-14-10
+                     pixel-14-11
+                     pixel-14-12
+                     pixel-14-13
+                     pixel-14-14
+                     pixel-14-15
+                     pixel-14-16
+                     pixel-14-17
+                     pixel-14-18
+                     pixel-14-19
+                     pixel-15-9
+                     pixel-15-10
+                     pixel-15-11
+                     pixel-15-12
+                     pixel-15-13
+                     pixel-15-14
+                     pixel-15-15
+                     pixel-15-16
+                     pixel-15-17
+                     pixel-15-18
+                     pixel-15-19
+                     pixel-15-22
+                     pixel-16-8
+                     pixel-16-10
+                     pixel-16-11
+                     pixel-16-12
+                     pixel-16-13
+                     pixel-16-14
+                     pixel-16-15
+                     pixel-16-16
+                     pixel-16-17
+                     pixel-16-18
+                     pixel-16-19
+                     pixel-16-22
+                     pixel-17-8
+                     pixel-17-9
+                     pixel-17-10
+                     pixel-17-12
+                     pixel-17-13
+                     pixel-17-14
+                     pixel-17-15
+                     pixel-17-17
+                     pixel-17-18
+                     pixel-18-7
+                     pixel-18-10
+                     pixel-18-11
+                     pixel-18-12
+                     pixel-18-13
+                     pixel-18-14
+                     pixel-18-15
+                     pixel-18-16
+                     pixel-18-17
+                     pixel-18-18
+                     pixel-18-20
+                     pixel-18-22
+                     pixel-19-10
+                     pixel-19-11
+                     pixel-19-12
+                     pixel-19-13
+                     pixel-19-14
+                     pixel-19-20
+                     pixel-20-7
+                     pixel-20-8
+                     pixel-20-9
+                     pixel-20-10
+                     pixel-20-11
+                     pixel-20-12
+                     pixel-20-13
+                     pixel-20-19
+                     pixel-21-7
+                     pixel-21-8
+                     pixel-21-9
+                     pixel-21-10
+                     pixel-21-12
+                     pixel-21-13
+                     pixel-21-18
+                     pixel-22-6
+                     pixel-22-8
+                     pixel-22-9
+                     pixel-22-10
+                     pixel-23-10
+                     pixel-23-11
+                     pixel-24-11
+                     pixel-24-12
+                     pixel-24-13
+                     pixel-24-14
+                     pixel-24-15
+

@@ -74,9 +74,6 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
-    numbers_and_words (0.10.0)
-      activesupport
-      i18n
     polyglot (0.3.3)
     rack (1.5.2)
     rack-contrib (1.1.0)
@@ -144,7 +141,6 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   meta_request
-  numbers_and_words
   rails (= 4.0.2)
   rb-libsvm
   rmagick

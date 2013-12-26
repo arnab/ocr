@@ -34,7 +34,6 @@ end
 
 gem "rmagick"
 gem "rb-libsvm"
-gem "numbers_and_words"
 
 group :development do
   gem 'better_errors'

@@ -4,7 +4,6 @@
 # 4. Write massaged data
 
 require "csv"
-require "numbers_and_words"
 
 def write_to_csv(labels, data, out_file)
   puts "Writing #{labels.size} items to #{out_file}"
@@ -16,7 +15,7 @@ def write_to_csv(labels, data, out_file)
   headers << "label"
   CSV.open(out_file, "wb", write_headers: true, headers: headers) do |csv|
     data.each_with_index do |example, i|
-      label = I18n.with_locale(:en) { labels[i].to_words }
+      label = I18n.with_locale(:en) { DataAccessor.num_to_word labels[i] }
       csv << [example, label].flatten
       puts "Done with #{i+1} lines" if (i+1) % 5000 == 0
     end

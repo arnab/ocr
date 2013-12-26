@@ -1,3 +1,5 @@
+require "csv"
+
 class DataAccessor
   IMAGE_DIMENSIONS = {
     height: 28,
@@ -36,12 +38,19 @@ class DataAccessor
   end
 
   def self.labels_and_examples_from_mnist_data(labels_file, examples_file)
-    labels = read_data(labels_file, 8)
-    examples = group_images(read_data(examples_file, 16))
+    labels = read_binary_data(labels_file, 8)
+    examples = group_images(read_binary_data(examples_file, 16))
     [labels, examples]
   end
 
-  def self.read_data(filename, offset)
+  def self.labels_and_examples_from(dataset)
+    Rails.logger.info "Reading #{dataset}"
+    data = CSV.read(File.join(DATA_DIR, dataset)).drop(1)
+    labels = data.map {|d| d.pop }
+    [labels, data]
+  end
+
+  def self.read_binary_data(filename, offset)
     filename = File.join(DATA_DIR, filename)
 
     # Skip the first offset bytes - mnsit data organization
@@ -52,5 +61,26 @@ class DataAccessor
     # Single-array of all the pixels: break them into arrays,
     # where each elem represents one image, of size height*width of the image
     pixels_ary.each_slice(IMAGE_DIMENSIONS[:height] * IMAGE_DIMENSIONS[:width]).to_a
+  end
+
+  NUM_AND_WORDS = {
+    0 => 'zero',
+    1 => 'one',
+    2 => 'two',
+    3 => 'three',
+    4 => 'four',
+    5 => 'five',
+    6 => 'six',
+    7 => 'seven',
+    8 => 'eight',
+    9 => 'nine',
+  }
+
+  def self.num_to_word(num)
+    NUM_AND_WORDS.fetch num
+  end
+
+  def self.word_to_num(str)
+    NUM_AND_WORDS.invert.fetch str
   end
 end

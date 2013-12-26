@@ -3,7 +3,7 @@ require "libsvm"
 class Classifier
   MODEL_FILE = "models/svm.model"
 
-  attr_reader :problem, :parameter, :model
+  attr_reader :problem, :parameter, :model, :results
 
   def initialize(cache_size: 100, eps: 0.001, c: 1)
     @problem = Libsvm::Problem.new
@@ -12,6 +12,7 @@ class Classifier
     @parameter.eps = eps
     @parameter.c = c
     @model = nil
+    reset_results!
   end
 
   def train(examples, labels)
@@ -25,6 +26,7 @@ class Classifier
 
   def test(examples, expected_labels, max_datapoints)
     check_model_available?
+    reset_results!
 
     if max_datapoints > 0
       indices = max_datapoints.times.map{ Random.rand(examples.size) }
@@ -47,6 +49,9 @@ class Classifier
       end
     end
     log_accuracy(failures.size, examples.size)
+    @results[:accuracy] = 100 - failures.size.to_f / examples.size * 100
+
+    @results_ready = true
   end
 
   def load_model
@@ -61,6 +66,18 @@ class Classifier
 
   def check_model_available?
     raise "model not trained yet" if @model.nil?
+  end
+
+  def reset_results!
+    @results_ready = false
+    @results = {
+      :accuracy => nil,
+      :confusion_matrix => nil
+    }
+  end
+
+  def results_ready?
+    @results_ready
   end
 
   def log_accuracy(failure_count, total_count, milepost=nil)

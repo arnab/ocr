@@ -2,6 +2,7 @@ class ClassifierController < ApplicationController
   before_filter :load_model, :only => [:show, :test]
 
   def show
+    classifier.reset_results!
   end
 
   def test

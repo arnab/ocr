@@ -35,3 +35,10 @@
       .row
         .columns
           %input.button.radius{type: "submit", value: 'Start Test'}
+
+- if classifier.results_ready?
+  %h2 Results
+  %h4
+    Accuracy:
+    %strong= classifier.results[:accuracy].round(2)
+    \%

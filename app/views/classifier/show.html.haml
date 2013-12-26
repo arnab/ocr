@@ -1,2 +1,21 @@
-%h1 Classifier#show
-%p Find me in app/views/classifier/show.html.haml
+= content_for(:title, "Classifier")
+
+= form_tag('/do') do |f|
+  %h5.subheader
+    A classifier model using libsvm has been loaded.
+    It has the following characteristics:
+
+  %table
+    %thead
+      %tr
+        %td Kerenel Type
+        %td C
+        %td eps
+        %td Examples Size
+    %tbody
+      %tr
+        %td Linear
+        %td= classifier.parameter.c
+        %td= classifier.parameter.eps
+        %td 60,000
+  %input.button.radius{type: "submit", value: 'Test Classifier' }

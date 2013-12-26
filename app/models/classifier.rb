@@ -3,6 +3,8 @@ require "libsvm"
 class Classifier
   MODEL_FILE = "models/svm.model"
 
+  attr_reader :problem, :parameter, :model
+
   def initialize(cache_size: 100, eps: 0.001, c: 1)
     @problem = Libsvm::Problem.new
     @parameter = Libsvm::SvmParameter.new

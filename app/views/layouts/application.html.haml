@@ -9,6 +9,8 @@
     = csrf_meta_tags
   %body
     = render partial: 'shared/nav'
-    %h1= content_for?(:title) ? yield(:title) : 'OCR'
-    = yield
+    .row
+      %h1= content_for?(:title) ? yield(:title) : 'OCR'
+    .row
+      = yield
     = javascript_include_tag "application", "data-turbolinks-track" => true

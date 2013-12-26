@@ -5,12 +5,12 @@ class ClassifierController < ApplicationController
   end
 
   def test
+    max_datapoints = params[:data_points].to_i
     test_data_file = DataAccessor::FILES[:raw_csv][:test]
     logger.info "Reading tests data from #{test_data_file}"
     labels, examples = DataAccessor.labels_and_examples_from(test_data_file)
     logger.info "Testsing classifier with #{labels.size} data-points"
-    classifier.test(examples, labels)
-
+    classifier.test(examples, labels, max_datapoints)
     render 'show'
   end
 

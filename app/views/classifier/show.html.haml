@@ -1,21 +1,37 @@
 = content_for(:title, "Classifier")
 
 = form_tag(classifier_test_path) do |f|
-  %h5.subheader
-    A classifier model using libsvm has been loaded.
-    It has the following characteristics:
+  .row
+    .columns
+      %h5.subheader
+        A classifier model using libsvm has been loaded from
+        %strong= Classifier::MODEL_FILE
+        \. It has the following characteristics:
 
-  %table
-    %thead
-      %tr
-        %td Kerenel Type
-        %td C
-        %td eps
-        %td Examples Size
-    %tbody
-      %tr
-        %td Linear
-        %td= classifier.parameter.c
-        %td= classifier.parameter.eps
-        %td 60,000
-  %input.button.radius{type: "submit", value: 'Test Classifier' }
+    .columns
+      %table
+        %thead
+          %tr
+            %td Kerenel Type
+            %td C
+            %td eps
+            %td Examples Size
+        %tbody
+          %tr
+            %td Linear
+            %td= classifier.parameter.c
+            %td= classifier.parameter.eps
+            %td 60,000
+
+    .columns
+      %h6.subheader
+        A test dataset of 10,000 examples is available to test the classifier.
+
+      .row
+        .columns.small-5
+          %label{for: 'data-points'} How many data points should we test with?
+          %input{name: 'data_points', id: 'data-points', type: 'text', placeholder: 'all'}
+
+      .row
+        .columns
+          %input.button.radius{type: "submit", value: 'Start Test'}

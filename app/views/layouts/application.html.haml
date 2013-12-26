@@ -10,7 +10,9 @@
   %body
     = render partial: 'shared/nav'
     .row
-      %h1= content_for?(:title) ? yield(:title) : 'OCR'
+      .columns
+        %h1= content_for?(:title) ? yield(:title) : 'OCR'
     .row
-      = yield
+      .columns
+        = yield
     = javascript_include_tag "application", "data-turbolinks-track" => true

@@ -23,8 +23,15 @@ class Classifier
     Rails.logger.info "Done training model"
   end
 
-  def test(examples, expected_labels)
+  def test(examples, expected_labels, max_datapoints)
     check_model_available?
+
+    if max_datapoints > 0
+      indices = max_datapoints.times.map{ Random.rand(examples.size) }
+      examples = indices.map{ |i| examples[i] }
+      expected_labels = indices.map{ |i| expected_labels[i] }
+    end
+
     expected_labels.map! {|str| DataAccessor.word_to_num str}
     Rails.logger.info "Running tests on #{examples.size} examples"
     failures = []

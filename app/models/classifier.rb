@@ -33,8 +33,8 @@ class Classifier
       if (i+1) % 1000 == 0
         log_accuracy(failures.size, examples.size, i+1)
       end
-      log_accuracy(failures.size, examples.size)
     end
+    log_accuracy(failures.size, examples.size)
   end
 
   def save_model

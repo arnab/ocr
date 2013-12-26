@@ -22,6 +22,7 @@ class Classifier
   end
 
   def test(examples, expected_labels)
+    check_model_available?
     expected_labels.map! {|str| DataAccessor.word_to_num str}
     Rails.logger.info "Running tests on #{examples.size} examples"
     failures = []
@@ -37,10 +38,18 @@ class Classifier
     log_accuracy(failures.size, examples.size)
   end
 
+  def load_model
+    @model = Libsvm::Model.load(MODEL_FILE)
+  end
+
   def save_model
-    raise "model not trained yet" if @model.nil?
+    check_model_available?
     @model.save(MODEL_FILE)
     Rails.logger.info "Saved model to #{MODEL_FILE}"
+  end
+
+  def check_model_available?
+    raise "model not trained yet" if @model.nil?
   end
 
   def log_accuracy(failure_count, total_count, milepost=nil)

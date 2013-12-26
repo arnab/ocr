@@ -9,12 +9,12 @@ class DataAccessor
     mnist_binary: {
       # http://yann.lecun.com/exdb/mnist/
       train: {
-        examples: "train-images-idx3-ubyte",
-        labels: "train-labels-idx1-ubyte"
+        examples: "mnist/train-images-idx3-ubyte",
+        labels: "mnist/train-labels-idx1-ubyte"
       },
       test: {
-        examples: "t10k-images-idx3-ubyte",
-        labels: "t10k-labels-idx1-ubyte"
+        examples: "mnist/t10k-images-idx3-ubyte",
+        labels: "mnist/t10k-labels-idx1-ubyte"
       }
     },
     raw_csv: {

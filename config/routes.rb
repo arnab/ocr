@@ -1,5 +1,7 @@
 Ocr::Application.routes.draw do
   get "data/show"
+  get "classifier/show"
+
   root 'data#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

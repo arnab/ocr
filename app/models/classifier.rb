@@ -25,7 +25,7 @@ class Classifier
     Rails.logger.info "Done training model"
   end
 
-  def test(examples, expected_labels, max_datapoints)
+  def test(examples, expected_labels, max_datapoints=nil)
     check_model_available?
     reset_results!
 

@@ -44,7 +44,7 @@ class Classifier
     check_model_available?
     reset_results!
 
-    if max_datapoints > 0
+    if max_datapoints.present? && max_datapoints > 0
       indices = max_datapoints.times.map{ Random.rand(examples.size) }
       examples = indices.map{ |i| examples[i] }
       expected_labels = indices.map{ |i| expected_labels[i] }

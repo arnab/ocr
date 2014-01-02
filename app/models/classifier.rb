@@ -3,6 +3,16 @@ require "matrix"
 
 class Classifier
   MODEL_FILE = "models/svm.model"
+  # Out of the 28x28 attributes, these were selected as the important ones by PCA.
+  # See models/reduce_dimensions.log
+  SELECTED_ATTRIBUTES = [101,102,128,129,150,151,153,154,155,156,157,158,180,182,183,184,185,189,191,
+                         211,212,214,221,232,238,240,242,243,249,262,263,264,265,267,268,270,271,272,
+                         273,284,291,292,296,298,299,300,301,318,319,320,323,324,327,328,330,346,347,
+                         348,349,350,351,352,354,355,373,374,375,376,377,378,379,380,381,382,383,401,
+                         402,403,404,405,406,407,408,409,410,411,414,428,430,431,432,433,434,435,436,
+                         437,438,439,442,456,457,458,460,461,462,463,465,466,483,486,487,488,489,490,
+                         491,492,493,494,496,498,514,515,516,517,518,524,539,540,541,542,543,544,545,
+                         551,567,568,569,570,572,573,578,594,596,597,598,626,627,655,656,657,658,659]
 
   attr_reader :problem, :parameter, :model, :results
 
@@ -19,6 +29,11 @@ class Classifier
   def train(examples, labels)
     labels.map! {|str| DataAccessor.word_to_num str}
     Rails.logger.info "Training LibSVM model with #{examples.size} examples"
+    Rails.logger.debug "Number of attributes before reducing: #{examples.first.size}"
+    examples.map! do |e|
+      e = SELECTED_ATTRIBUTES.map {|i| e[i] }
+    end
+    Rails.logger.debug "Number of attributes after reducing: #{examples.first.size}"
     features = examples.map {|ary| Libsvm::Node.features(ary) }
     @problem.set_examples(labels, features)
     @model = Libsvm::Model.train(@problem, @parameter)
@@ -42,7 +57,8 @@ class Classifier
 
     examples.each_with_index do |example, i|
       expected = expected_labels[i].to_i
-      found = @model.predict(Libsvm::Node.features(*example)).to_i
+      reduced_example = SELECTED_ATTRIBUTES.map {|i| example[i]}
+      found = @model.predict(Libsvm::Node.features(*reduced_example)).to_i
 
       @results[:confusion_matrix][found, expected] << i
       failure_count += 1 unless found == expected

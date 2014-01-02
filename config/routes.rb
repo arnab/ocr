@@ -1,9 +1,8 @@
 Ocr::Application.routes.draw do
-  get "data/show"
   get "classifier/show"
   post "classifier/test"
 
-  root 'data#show'
+  root 'classifier#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

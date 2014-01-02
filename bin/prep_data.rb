@@ -6,6 +6,12 @@
 require "csv"
 
 def write_to_csv(labels, data, out_file)
+  if ARGV.first.present?
+    max_lines = ARGV.first.to_i
+    indices = max_lines.times.map{ Random.rand(labels.size) }.uniq
+    labels = indices.map {|i| labels[i]}
+    data = indices.map {|i| data[i]}
+  end
   puts "Writing #{labels.size} items to #{out_file}"
 
   headers = []

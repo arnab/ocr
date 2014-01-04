@@ -1,5 +1,5 @@
 class ClassifierController < ApplicationController
-  before_filter :load_model, :only => [:show, :test]
+  before_filter :load_model, :only => [:show, :test, :test_image]
 
   def show
     classifier.reset_results!
@@ -13,6 +13,21 @@ class ClassifierController < ApplicationController
     logger.info "Testsing classifier with #{labels.size} data-points"
     classifier.test(examples, labels, max_datapoints)
     render 'show'
+  end
+
+  def try
+  end
+
+  def test_image
+    uploaded_io = params[:image]
+    filename = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+    File.open(filename, 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    i = Magick::Image.read(filename)[0]
+    data = i.export_pixels(0, 0, i.columns, i.rows, "I")
+    @found_class = classifier.predict(data).to_i
+    render 'try'
   end
 
   helper_method :classifier

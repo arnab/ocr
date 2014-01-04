@@ -1,0 +1,17 @@
+= content_for(:title, "Try the classifier")
+
+= form_tag(classifier_test_image_path, multipart: true) do |f|
+  .row
+    .columns
+      %h5.subheader
+        Try the clasifier on your own hand-writing
+  .row
+    .columns.small-5
+      = file_field_tag :image
+  .row
+    .columns
+      %input.button.radius{type: "submit", value: 'Try'}
+
+%h2
+  Prediction:
+  %strong= @found_class

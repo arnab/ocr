@@ -72,6 +72,12 @@ class Classifier
     @results_ready = true
   end
 
+  def predict(data)
+    check_model_available?
+    reduced_data = SELECTED_ATTRIBUTES.map {|i| data[i]}
+    @model.predict(Libsvm::Node.features(*reduced_data)).to_i
+  end
+
   def load_model
     @model = Libsvm::Model.load(MODEL_FILE)
   end
